@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="DEVEN Studio animation and motion design portfolio." />
+    <title>DEVEN Studio — Animation</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23050505'/%3E%3Cpath d='M13 13h17c14 0 22 9 22 19s-8 19-22 19H13V13Zm10 9v20h7c7 0 11-4 11-10s-4-10-11-10h-7Z' fill='%23f7931e'/%3E%3Cpath d='m13 13 39 38H38L13 26V13Z' fill='%23c71c37'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root { --black:#050505; --white:#f8f7f4; --acid:#f7931e; --orange:#c71c37; --line:rgba(248,247,244,.24); --mono:"DM Mono", monospace; --sans:"Manrope", Arial,sans-serif; --display:"Anton", Impact, sans-serif; }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; background:var(--black); }
+      body { margin:0; background:linear-gradient(rgba(247,147,30,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(247,147,30,.05) 1px,transparent 1px),var(--black); background-size:56px 56px; color:var(--white); font-family:var(--sans); overflow-x:hidden; }
+      a { color:inherit; text-decoration:none; }
+      button { font:inherit; color:inherit; }
+      .noise { position:fixed; inset:0; z-index:20; pointer-events:none; opacity:.09; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+      .wrap { width:min(1400px, calc(100% - 52px)); margin:0 auto; }
+      .nav { height:78px; display:flex; align-items:center; justify-content:space-between; position:relative; z-index:4; border-bottom:1px solid var(--line); }
+      .logo { display:block; width:145px; height:58px; }
+      .logo img { display:block; width:100%; height:100%; object-fit:contain; }
+      .nav-links { display:flex; gap:24px; align-items:center; font:500 10px/1 var(--mono); letter-spacing:.06em; text-transform:uppercase; }
+      .nav-links a:not(.contact-button):hover { color:var(--acid); }
+      .contact-button { background:var(--acid); color:var(--black); padding:10px 13px; border-radius:999px; }
+      .hero { min-height:calc(100vh - 78px); padding:29px 0 36px; position:relative; overflow:hidden; display:flex; flex-direction:column; }
+      .hero-meta { display:flex; justify-content:space-between; align-items:center; color:var(--acid); font:500 10px/1 var(--mono); letter-spacing:.06em; text-transform:uppercase; position:relative; z-index:2; }
+      .hero-title { font:400 clamp(79px, 15.1vw, 235px)/.78 var(--display); letter-spacing:.005em; text-transform:uppercase; margin:clamp(68px, 12vh, 138px) 0 0; position:relative; z-index:2; }
+      .hero-title .acid { color:var(--acid); display:inline-block; }
+      .hero-title span { display:block; }
+      .hero-title .indent { padding-left:16.7%; }
+      .hero-title .motion { position:relative; z-index:2; }
+      .hero-title .motion::after { content:""; position:absolute; z-index:-1; left:-.02em; right:-.02em; bottom:.09em; height:.14em; background:var(--orange); transform:rotate(-1.4deg); }
+      .hero-video-wrap { position:absolute; z-index:1; width:min(37vw, 500px); aspect-ratio:1.1/1; top:19%; right:6.7%; border-radius:50%; overflow:hidden; border:1px solid rgba(248,247,244,.5); background:#16110d; box-shadow:0 0 0 14px var(--black), 0 0 0 15px rgba(248,247,244,.2); }
+      .hero-video-wrap::after { content:"SHOWREEL · 2026 · SHOWREEL · 2026 ·"; position:absolute; inset:19px; border:1px dashed rgba(244,241,235,.56); border-radius:50%; padding:27px; font:500 9px/1 var(--mono); letter-spacing:.24em; color:var(--white); animation:spin 19s linear infinite; pointer-events:none; }
+      .hero-video { width:100%; height:100%; object-fit:cover; display:block; opacity:.84; }
+      .hero-play { position:absolute; z-index:3; inset:0; margin:auto; width:81px; height:81px; border:0; border-radius:50%; background:var(--acid); color:var(--black); cursor:pointer; display:grid; place-items:center; font:700 22px/1 var(--sans); padding-left:4px; transition:transform .25s; }
+      .hero-play:hover { transform:scale(1.1); }
+      .hero-bottom { display:flex; align-items:flex-end; justify-content:space-between; gap:30px; margin-top:auto; position:relative; z-index:2; }
+      .intro { max-width:400px; font-size:15px; line-height:1.55; margin:0; }
+      .intro b { color:var(--acid); }
+      .scroll { font:500 10px/1 var(--mono); letter-spacing:.06em; text-transform:uppercase; display:flex; align-items:center; gap:10px; }
+      .scroll:after { content:"↓"; width:30px; height:30px; display:grid; place-items:center; border:1px solid var(--white); border-radius:50%; font:17px/1 var(--sans); }
+      @keyframes spin { to { transform:rotate(360deg); } }
+      .strip { border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:17px 26px; background:var(--acid); color:var(--black); text-align:center; }
+      .strip-inner { font:500 clamp(10px,1vw,13px)/1.2 var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+      section { border-bottom:1px solid var(--line); }
+      .section { padding:110px 0; }
+      .label { font:500 10px/1 var(--mono); letter-spacing:.07em; text-transform:uppercase; color:var(--acid); }
+      .work-header { display:flex; justify-content:space-between; align-items:end; margin-bottom:38px; }
+      .work-header h2 { font:400 clamp(65px, 10vw, 143px)/.81 var(--display); letter-spacing:.008em; text-transform:uppercase; margin:0; }
+      .work-header p { max-width:230px; margin:0 0 4px; font-size:13px; line-height:1.45; }
+      .projects { display:grid; grid-template-columns:repeat(12,1fr); gap:19px; }
+      .project { position:relative; overflow:hidden; background:#25232a; min-height:400px; cursor:pointer; isolation:isolate; }
+      .project:first-child { grid-column:span 7; }
+      .project:nth-child(2) { grid-column:span 5; }
+      .project:nth-child(3) { grid-column:span 5; }
+      .project:nth-child(4) { grid-column:span 7; }
+      .project:nth-child(5) { grid-column:span 12; min-height:290px; }
+      .card-art { position:absolute; z-index:0; inset:0; background:#121212!important; }
+      .card-art::before, .card-art::after { display:none; }
+      .card-thumbnail { position:absolute; inset:0; z-index:1; width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s cubic-bezier(.2,.7,.2,1), filter .35s; }
+      .project:hover .card-thumbnail { transform:scale(1.07); filter:saturate(1.12) contrast(1.04); }
+      .project:nth-child(1) .card-art { background:radial-gradient(circle at 52% 44%,#ffe15c 0 6%,#ff7145 7% 19%,transparent 20%),radial-gradient(circle at 46% 48%,#5e36c8 0 36%,transparent 37%),linear-gradient(135deg,#08385d,#111129); }
+      .project:nth-child(2) .card-art { background:radial-gradient(ellipse at 56% 33%,#d9f94a 0 9%,transparent 10%),radial-gradient(ellipse at 48% 51%,#ea5b98 0 24%,transparent 25%),linear-gradient(135deg,#28165d,#101018); }
+      .project:nth-child(3) .card-art { background:radial-gradient(circle at 35% 32%,#f9cfd9 0 6%,transparent 7%),radial-gradient(circle at 55% 53%,#fc7145 0 26%,transparent 27%),linear-gradient(145deg,#9d1e41,#1b1623); }
+      .project:nth-child(4) .card-art { background:radial-gradient(ellipse at 58% 41%,#48a4e9 0 16%,transparent 17%),radial-gradient(ellipse at 46% 57%,#d3f648 0 36%,transparent 37%),linear-gradient(135deg,#1d3655,#14241d); }
+      .project:nth-child(5) .card-art { background:radial-gradient(ellipse at 50% 50%,#ff4f84 0 12%,transparent 13%),radial-gradient(ellipse at 50% 50%,#bba5ff 0 34%,transparent 35%),linear-gradient(90deg,#12101d,#2e1642,#12101d); }
+      .card-art::before, .card-art::after { content:""; position:absolute; border:2px solid rgba(244,241,235,.55); border-radius:50%; }
+      .project:nth-child(1) .card-art::before { width:63%; height:63%; left:18%; top:17%; }
+      .project:nth-child(2) .card-art::before { width:46%; height:72%; left:27%; top:13%; border-radius:50% 50% 7px 7px; }
+      .project:nth-child(3) .card-art::before { width:84%; height:36%; left:8%; top:33%; transform:rotate(-25deg); }
+      .project:nth-child(4) .card-art::before { width:72%; height:72%; left:14%; top:14%; border-width:10px; }
+      .project:nth-child(5) .card-art::before { width:73%; height:180%; left:13%; top:-40%; transform:rotate(16deg); border-width:8px; }
+      .card-veil { position:absolute; z-index:2; inset:0; background:linear-gradient(0deg,rgba(0,0,0,.72),transparent 55%); }
+      .project-info { position:absolute; z-index:3; inset:auto 23px 20px; display:flex; justify-content:space-between; align-items:end; gap:18px; }
+      .project-info h3 { font:400 clamp(32px, 4.4vw, 57px)/.83 var(--display); text-transform:uppercase; letter-spacing:.01em; margin:0; max-width:70%; }
+      .project-info p { margin:7px 0 0; font:500 10px/1.3 var(--mono); letter-spacing:.04em; text-transform:uppercase; }
+      .play-dot { flex:0 0 auto; width:44px; height:44px; display:grid; place-items:center; border:1px solid var(--white); border-radius:50%; transition:.2s; }
+      .project:hover .play-dot { color:var(--black); background:var(--acid); border-color:var(--acid); }
+      .project-number { position:absolute; z-index:3; top:20px; left:22px; color:var(--white); font:500 10px/1 var(--mono); }
+      .about { background:var(--white); color:var(--black); }
+      .about .label { color:var(--orange); }
+      .about-layout { display:grid; grid-template-columns:1fr 2.2fr; gap:80px; }
+      .about h2 { font:400 clamp(55px, 8.3vw, 118px)/.82 var(--display); letter-spacing:.01em; text-transform:uppercase; margin:0; }
+      .about h2 span { color:var(--orange); }
+      .about-copy { max-width:620px; font-size:clamp(22px,2.45vw,34px); font-weight:500; line-height:1.18; letter-spacing:-.045em; }
+      .services { margin-top:64px; border-top:1px solid rgba(12,12,13,.45); }
+      .service { display:flex; justify-content:space-between; align-items:center; padding:13px 0; border-bottom:1px solid rgba(12,12,13,.45); font:500 11px/1 var(--mono); text-transform:uppercase; letter-spacing:.03em; }
+      .service span:last-child { color:var(--orange); }
+      .contact { padding:112px 0 31px; }
+      .contact h2 { margin:25px 0 55px; max-width:1100px; font:400 clamp(66px, 11.8vw, 166px)/.8 var(--display); text-transform:uppercase; letter-spacing:.01em; }
+      .contact h2 em { color:var(--acid); font-style:normal; }
+      .email { display:inline-flex; align-items:center; gap:17px; border-bottom:2px solid var(--acid); padding-bottom:9px; font-size:clamp(20px,2.8vw,38px); font-weight:700; letter-spacing:-.06em; }
+      .email:hover { color:var(--acid); }
+      .discord { margin:18px 0 0; color:var(--white); font:500 13px/1.3 var(--mono); letter-spacing:.04em; text-transform:uppercase; }
+      .discord span { color:var(--acid); }
+      .footer { display:flex; justify-content:space-between; gap:22px; border-top:1px solid var(--line); margin-top:116px; padding-top:18px; color:rgba(244,241,235,.7); font:400 10px/1 var(--mono); letter-spacing:.04em; text-transform:uppercase; }
+      .footer-links { display:flex; gap:20px; }
+      .footer-links a:hover { color:var(--acid); }
+      .modal { position:fixed; z-index:30; inset:0; display:none; align-items:center; justify-content:center; padding:22px; background:rgba(0,0,0,.9); }
+      .modal.show { display:flex; }
+      .modal-content { width:min(1100px,100%); position:relative; background:#171719; }
+      .modal iframe { display:block; width:100%; height:min(68vw, 72vh); min-height:420px; border:0; background:#080808; }
+      .modal-close { position:absolute; z-index:2; top:12px; right:12px; width:39px; height:39px; border:1px solid rgba(244,241,235,.7); background:rgba(0,0,0,.5); border-radius:50%; cursor:pointer; font-size:20px; }
+      .modal-caption { padding:13px 16px; font:500 10px/1.4 var(--mono); letter-spacing:.05em; text-transform:uppercase; }
+      @media (max-width:760px) { .wrap { width:min(100% - 32px, 1400px); } .nav { height:64px; } .logo { width:115px; height:47px; } .nav-links { gap:13px; } .nav-links a:nth-child(1),.nav-links a:nth-child(2) { display:none; } .hero { min-height:calc(100svh - 64px); } .hero-title { margin-top:130px; font-size:clamp(67px,20vw,120px); } .hero-title .indent { padding-left:0; } .hero-video-wrap { width:52vw; top:20%; right:0; opacity:.85; } .hero-bottom { align-items:start; flex-direction:column; } .work-header { align-items:start; flex-direction:column; gap:23px; } .projects { display:block; } .project { min-height:330px; margin-bottom:14px; } .project-info h3 { font-size:41px; } .section { padding:76px 0; } .about-layout { grid-template-columns:1fr; gap:30px; } .contact { padding-top:77px; } .footer { margin-top:75px; flex-direction:column; } }
+      @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.001ms!important; scroll-behavior:auto!important; } }
+    </style>
+  </head>
+  <body>
+    <div class="noise"></div>
+    <header class="wrap nav"><a class="logo" href="#top" aria-label="DEVEN Studio home"><img src="deven-studio-logo-crop.png" alt="DEVEN Studio" /></a><nav class="nav-links" aria-label="Main navigation"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a><a class="contact-button" href="mailto:orangedonutzz@gmail.com">Start a project ↗</a></nav></header>
+    <main id="top">
+      <section class="wrap hero">
+        <div class="hero-meta"><span>DEVEN Studio / Animation</span><span>Based anywhere / available worldwide</span></div>
+        <!-- The showreel opens in an embedded Google Drive player without leaving this page. -->
+        <div class="hero-video-wrap"><img class="hero-video" src="https://drive.google.com/thumbnail?id=1HE3aKgX0tTk2AuBpOUW3uxK1weXs8HSq&amp;sz=w1200" alt="Preview from selected animation" /><button class="hero-play open-reel" aria-label="Play animation reel" data-drive="https://drive.google.com/file/d/1HE3aKgX0tTk2AuBpOUW3uxK1weXs8HSq/preview" data-title="Selected Animation · 01">▶</button></div>
+        <h1 class="hero-title"><span>I build worlds</span><span class="indent">in <b class="acid">motion.</b></span></h1>
+        <div class="hero-bottom"><p class="intro">I turn <b>ideas, characters, and strange little sparks</b> into animated stories for screens of every size.</p><a class="scroll" href="#work">Watch the work</a></div>
+      </section>
+      <div class="strip"><div class="strip-inner">Character animation / Motion design / 3D worlds</div></div>
+      <section class="wrap section" id="work">
+        <div class="work-header"><div><p class="label">Selected films / 01—05</p><h2>Watch it<br />move.</h2></div><p>Every project starts with a feeling. Here are a few I’ve brought to life.</p></div>
+        <div class="projects">
+          <article class="project open-reel" tabindex="0" role="button" data-drive="https://drive.google.com/file/d/1HE3aKgX0tTk2AuBpOUW3uxK1weXs8HSq/preview" data-title="Selected Animation · 01"><div class="card-art"></div><img class="card-thumbnail" src="https://drive.google.com/thumbnail?id=1HE3aKgX0tTk2AuBpOUW3uxK1weXs8HSq&amp;sz=w1600" alt="Thumbnail from animation 01" /><div class="card-veil"></div><span class="project-number">01 / 05</span><div class="project-info"><div><h3>Animation 01</h3><p>Click to watch</p></div><span class="play-dot">▶</span></div></article>
+          <article class="project open-reel" tabindex="0" role="button" data-drive="https://drive.google.com/file/d/1xj1pf4yMpmYhpdgUxhsQHtI2e7q77RWM/preview" data-title="Selected Animation · 02"><div class="card-art"></div><img class="card-thumbnail" src="https://drive.google.com/thumbnail?id=1xj1pf4yMpmYhpdgUxhsQHtI2e7q77RWM&amp;sz=w1600" alt="Thumbnail from animation 02" /><div class="card-veil"></div><span class="project-number">02 / 05</span><div class="project-info"><div><h3>Animation 02</h3><p>Click to watch</p></div><span class="play-dot">▶</span></div></article>
+          <article class="project open-reel" tabindex="0" role="button" data-drive="https://drive.google.com/file/d/1MsHd0zR-u9Jz4T6BmkprBD9k89kXWJVs/preview" data-title="Selected Animation · 03"><div class="card-art"></div><img class="card-thumbnail" src="https://drive.google.com/thumbnail?id=1MsHd0zR-u9Jz4T6BmkprBD9k89kXWJVs&amp;sz=w1600" alt="Thumbnail from animation 03" /><div class="card-veil"></div><span class="project-number">03 / 05</span><div class="project-info"><div><h3>Animation 03</h3><p>Click to watch</p></div><span class="play-dot">▶</span></div></article>
+          <article class="project open-reel" tabindex="0" role="button" data-drive="https://drive.google.com/file/d/1z416Qqm2oOuNUbtgdVPtqj_TKFMSlWvL/preview" data-title="Selected Animation · 04"><div class="card-art"></div><img class="card-thumbnail" src="https://drive.google.com/thumbnail?id=1z416Qqm2oOuNUbtgdVPtqj_TKFMSlWvL&amp;sz=w1600" alt="Thumbnail from animation 04" /><div class="card-veil"></div><span class="project-number">04 / 05</span><div class="project-info"><div><h3>Animation 04</h3><p>Click to watch</p></div><span class="play-dot">▶</span></div></article>
+          <article class="project open-reel" tabindex="0" role="button" data-drive="https://drive.google.com/file/d/1nAFzfHYhDmg_1WVuwhwB1UzExNbd-SD7/preview" data-title="Selected Animation · 05"><div class="card-art"></div><img class="card-thumbnail" src="https://drive.google.com/thumbnail?id=1nAFzfHYhDmg_1WVuwhwB1UzExNbd-SD7&amp;sz=w1600" alt="Thumbnail from animation 05" /><div class="card-veil"></div><span class="project-number">05 / 05</span><div class="project-info"><div><h3>Animation 05</h3><p>Click to watch</p></div><span class="play-dot">▶</span></div></article>
+        </div>
+      </section>
+      <section class="about section" id="about"><div class="wrap about-layout"><div><p class="label">A little about me</p><h2>Made to<br /><span>move people.</span></h2></div><div><p class="about-copy">I’m an animator and visual storyteller making colourful, characterful work that lands somewhere between <em>“how did they do that?”</em> and <em>“I can’t stop watching.”</em></p><div class="services"><div class="service"><span>01 / Character animation</span><span>2D &amp; 3D</span></div><div class="service"><span>02 / Motion design</span><span>Titles, branding, social</span></div><div class="service"><span>03 / Art direction</span><span>Look development</span></div><div class="service"><span>04 / Short films</span><span>From sketch to final frame</span></div></div></div></div></section>
+      <section class="wrap contact" id="contact"><p class="label">Have something that needs to move?</p><h2>Let’s make<br />some <em>noise.</em></h2><a class="email" href="mailto:orangedonutzz@gmail.com">orangedonutzz@gmail.com <span>↗</span></a><p class="discord">Discord / <span>muhammadzaid_848</span></p><footer class="footer"><span>© <span id="year"></span> DEVEN Studio</span><div class="footer-links"><a href="https://docs.google.com/document/d/10lFLknBp7xbiUX80EUUF8XfN26HknpRoS4-IPtrOntA/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Credits ↗</a></div></footer></section>
+    </main>
+    <div class="modal" id="reel-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Video player"><div class="modal-content"><button class="modal-close" aria-label="Close video">×</button><iframe id="reel-player" title="Animation player" allow="autoplay; fullscreen" allowfullscreen></iframe><div class="modal-caption" id="reel-caption"></div></div></div>
+    <script>
+      const modal = document.getElementById('reel-modal'); const player = document.getElementById('reel-player'); const caption = document.getElementById('reel-caption');
+      const close = () => { player.removeAttribute('src'); modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); };
+      const open = (item) => { player.src = item.dataset.drive; caption.textContent = item.dataset.title; modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); };
+      document.querySelectorAll('.open-reel').forEach(item => { item.addEventListener('click', () => open(item)); item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item); } }); });
+      document.querySelector('.modal-close').addEventListener('click', close); modal.addEventListener('click', e => { if (e.target === modal) close(); }); document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); }); document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
